@@ -1,0 +1,13 @@
+package ru.inside.testtask.payload.request;
+
+import lombok.Data;
+
+import javax.validation.constraints.NotEmpty;
+
+@Data
+public class LoginRequest {
+    @NotEmpty(message = "Username cannot be empty")
+    private String name;
+    @NotEmpty(message = "Password cannot be empty")
+    private String password;
+}
