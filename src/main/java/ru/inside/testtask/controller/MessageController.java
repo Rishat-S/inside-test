@@ -21,10 +21,11 @@ public class MessageController {
     }
 
     @PostMapping("/message")
-    public ResponseEntity<Object> saveMessage(@RequestBody MessageResponse messageResponse, Principal principal) throws IOException {
+    public ResponseEntity<Object> saveMessage(@RequestBody MessageResponse messageResponse,
+                                              Principal principal) throws IOException {
         if (messageResponse.getMessage().startsWith("history")) {
-            String limitString = messageResponse.getMessage().split(" ")[1];
-            List<MessageDTO> messagesByUser = messageService.getAllMessagesByUser(Long.parseLong(limitString), principal);
+            Long limit = Long.parseLong(messageResponse.getMessage().split(" ")[1]);
+            List<MessageDTO> messagesByUser = messageService.getAllMessagesByUser(limit, principal);
             return ResponseEntity.ok(messagesByUser);
         } else {
             messageService.save(messageResponse.getMessage(), principal);
