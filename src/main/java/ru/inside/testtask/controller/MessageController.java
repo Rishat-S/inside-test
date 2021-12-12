@@ -3,6 +3,7 @@ package ru.inside.testtask.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.inside.testtask.dto.MessageDTO;
+import ru.inside.testtask.payload.request.MessageRequest;
 import ru.inside.testtask.payload.response.MessageResponse;
 import ru.inside.testtask.service.MessageService;
 
@@ -21,17 +22,16 @@ public class MessageController {
     }
 
     @PostMapping("/message")
-    public ResponseEntity<Object> saveMessage(@RequestBody MessageResponse messageResponse,
+    public ResponseEntity<Object> saveMessage(@RequestBody MessageRequest messageRequest,
                                               Principal principal) throws IOException {
-        if (messageResponse.getMessage().startsWith("history")) {
-            Long limit = Long.parseLong(messageResponse.getMessage().split(" ")[1]);
+        if (messageRequest.getMessage().startsWith("history")) {
+            Long limit = Long.parseLong(messageRequest.getMessage().split(" ")[1]);
             List<MessageDTO> messagesByUser = messageService.getAllMessagesByUser(limit, principal);
             return ResponseEntity.ok(messagesByUser);
         } else {
-            messageService.save(messageResponse.getMessage(), principal);
+            messageService.save(messageRequest.getMessage(), principal);
             return ResponseEntity.ok(new MessageResponse("Message save successfully"));
         }
-
 
     }
 

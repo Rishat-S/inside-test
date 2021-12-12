@@ -42,7 +42,7 @@ public class MessageService {
 
     public List<MessageDTO> getAllMessagesByUser(Long limit, Principal principal) {
         User user = getUserByPrincipal(principal);
-        List<Message> fileList = messageRepository.findAllByUserOrderByCreatedDate(user);
+        List<Message> fileList = messageRepository.findAllByUserOrderByCreatedDateDesc(user);
         return fileList.stream()
                 .limit(limit)
                 .map(messageFacade::messageToMessageDTO)
