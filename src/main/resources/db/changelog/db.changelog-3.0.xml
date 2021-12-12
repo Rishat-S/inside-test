@@ -16,9 +16,9 @@
     </changeSet>
 
     <changeSet id="3.0.1" author="r.suleymanov">
-        <insert catalogName="diplom"
+        <insert catalogName="data"
                 dbms="mysql"
-                schemaName="diplom"
+                schemaName="data"
                 tableName="user_role">
             <column name="user_id" value="1"/>
             <column name="roles" value="0"/>
