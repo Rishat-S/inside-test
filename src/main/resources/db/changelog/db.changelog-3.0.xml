@@ -11,7 +11,17 @@
             <column name="first_name" value="User"/>
             <column name="last_name" value="Userov"/>
             <column name="password" value="$2a$10$qwMGxShOHYqU0Ru6TkqWEOJGSY7a5MfnZCSIOjZZDTFSOJT8zJSYu"/>
-            <column name="user_name" value="user"/>
+            <column name="username" value="user"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="3.0.1" author="r.suleymanov">
+        <insert catalogName="diplom"
+                dbms="mysql"
+                schemaName="diplom"
+                tableName="user_role">
+            <column name="user_id" value="1"/>
+            <column name="roles" value="0"/>
         </insert>
     </changeSet>
 

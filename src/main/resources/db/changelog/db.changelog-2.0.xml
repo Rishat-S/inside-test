@@ -4,6 +4,9 @@
                         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <changeSet id="2.0.0" author="r.suleymanov">
+        <addForeignKeyConstraint baseTableName="user_role" baseColumnNames="user_id"
+                                 constraintName="user_role"
+                                 referencedTableName="user" referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableName="message" baseColumnNames="user_id"
                                  constraintName="user_id"
                                  referencedTableName="user" referencedColumnNames="id"/>

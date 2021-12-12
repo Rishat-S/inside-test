@@ -13,7 +13,7 @@
             <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_name" type="varchar(255)">
+            <column name="username" type="varchar(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
@@ -28,6 +28,15 @@
             <column name="message" type="varchar(255)"/>
             <column name="title" type="varchar(255)"/>
             <column name="user_id" type="bigint"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.2" author="r.suleymanov">
+        <createTable tableName="user_role">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="roles" type="integer"/>
         </createTable>
     </changeSet>
 
