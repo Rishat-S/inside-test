@@ -1,0 +1,22 @@
+openapi: "3.0.3"
+info:
+  title: "testtask API"
+  description: "testtask API"
+  version: "1.0.0"
+servers:
+  - url: "https://testtask"
+paths:
+  /api/auth:
+    post:
+      summary: "POST api/auth"
+      operationId: "authenticateUser"
+      responses:
+        "200":
+          description: "OK"
+  /api/message:
+    post:
+      summary: "POST api/message"
+      operationId: "saveMessage"
+      responses:
+        "200":
+          description: "OK"
