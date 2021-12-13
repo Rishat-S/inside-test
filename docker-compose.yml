@@ -3,5 +3,21 @@ version: "3.8"
 services:
   web:
     build: .
+#    restart: always
     ports:
       - "8080:8080"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 31234
+      MYSQL_DB: data
+  db:
+    image: mysql
+    #    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '31234'
+      MYSQL_DATABASE: 'data'
+    volumes:
+      - /mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
