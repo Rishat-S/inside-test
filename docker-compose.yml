@@ -9,7 +9,8 @@ services:
     container_name: web
     restart: on-failure
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     network_mode: host
 
   db:
@@ -22,4 +23,9 @@ services:
       MYSQL_ROOT_PASSWORD: 31234
       MYSQL_DATABASE: data
     network_mode: host
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=31234 --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 30s
+      retries: 15
 
