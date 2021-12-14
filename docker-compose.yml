@@ -1,16 +1,20 @@
 version: "3.8"
 
+volumes:
+  dbdata:
+
 services:
   web:
     build: .
     container_name: web
-    restart: always
+    restart: on-failure
     depends_on:
       - db
     network_mode: host
+
   db:
     image: mysql
-    restart: always
+    restart: on-failure
     container_name: db
     volumes:
       - dbdata:/var/lib/mysql
@@ -18,7 +22,4 @@ services:
       MYSQL_ROOT_PASSWORD: 31234
       MYSQL_DATABASE: data
     network_mode: host
-
-volumes:
-  dbdata:
 
