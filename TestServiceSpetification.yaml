@@ -4,12 +4,24 @@ info:
   description: "testtask API"
   version: "1.0.0"
 servers:
-  - url: "https://testtask"
+  - url: "http://localhost:8080/testtask"
+    description: local server
 paths:
   /api/auth:
     post:
       summary: "POST api/auth"
       operationId: "authenticateUser"
+      requestBody:
+        description: Login and password hash
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                password:
+                  type: string
       responses:
         "200":
           description: "OK"
@@ -17,6 +29,22 @@ paths:
     post:
       summary: "POST api/message"
       operationId: "saveMessage"
+      parameters:
+        - in: header
+          name: token
+          schema:
+            type: string
+      requestBody:
+        description: Login and password hash
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                message:
+                  type: string
       responses:
         "200":
           description: "OK"
