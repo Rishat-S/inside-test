@@ -8,15 +8,17 @@ services:
     depends_on:
       - db
     network_mode: host
-
   db:
     image: mysql
     restart: always
     container_name: db
+    volumes:
+      - dbdata:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 31234
-    volumes:
-      - /mysql_data:/var/lib/mysql
+      MYSQL_DATABASE: data
     network_mode: host
 
+volumes:
+  dbdata:
 

@@ -24,7 +24,7 @@ public class MessageController {
     @PostMapping("/message")
     public ResponseEntity<Object> saveMessage(@RequestBody MessageRequest messageRequest,
                                               Principal principal) throws IOException {
-        if (messageRequest.getMessage().startsWith("history")) {
+        if (messageRequest.getMessage().startsWith("history ")) {
             Long limit = Long.parseLong(messageRequest.getMessage().split(" ")[1]);
             List<MessageDTO> messagesByUser = messageService.getAllMessagesByUser(limit, principal);
             return ResponseEntity.ok(messagesByUser);
